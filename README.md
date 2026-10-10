@@ -25,3 +25,7 @@ More effects
 Idle effects
 
 Bluetooth?
+
+
+
+This project used ChatGPT to teach me how to control LED's, send signals to an arduino, and how to pull audio data from windows.
