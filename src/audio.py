@@ -43,10 +43,10 @@ def add_block(band_magnitudeL, band_magnitudeR, band_colors):
     py_loader.list_L = []
     py_loader.list_R = []
     cur_max_L = band_magnitudeL.index(max(band_magnitudeL))
-    for i in range(0, int(max(band_magnitudeL) /sum(band_magnitudeL) *20)):
+    for i in range(0, int(max(band_magnitudeL) /sum(band_magnitudeL) *7)):
         py_loader.list_L.append(band_colors[cur_max_L])
     cur_max_R = band_magnitudeR.index(max(band_magnitudeR))
-    for i in range(0, int(max(band_magnitudeR) /sum(band_magnitudeR) *20)):
+    for i in range(0, int(max(band_magnitudeR) /sum(band_magnitudeR) *7)):
         py_loader.list_R.append(band_colors[cur_max_R])
 
 def do_bassss(band_magnitudeL, band_magnitudeR):
