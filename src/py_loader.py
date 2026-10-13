@@ -26,7 +26,7 @@ def load_pixels():
         out_str += l
 
     print(out_str)
-    esp32.write((out_str + "\n").encode())
+    # esp32.write((out_str + "\n").encode())
 
     if esp32.in_waiting:
         response = esp32.read(esp32.in_waiting)
