@@ -5,7 +5,7 @@ import py_loader
 # my speakers:
 # speaker = sc.get_speaker("Speakers (Realtek(R) Audio)")
 # speaker = sc.get_speaker("Plantronics C420-M")
-speaker = sc.get_speaker("Headphones (Meow)")
+# speaker = sc.get_speaker("Headphones (Meow)")
 
 # to find your speakers run print(sc.all_speakers())
 
