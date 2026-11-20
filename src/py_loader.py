@@ -28,7 +28,7 @@ def load_pixels():
     for l in list_L:
         out_str += l
 
-    print(out_str)
+    # print(out_str) #for debugging
     esp32.write((out_str + "\n").encode())
 
     if esp32.in_waiting:
