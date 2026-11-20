@@ -1,6 +1,8 @@
 # arduino_led_project
 Download all of the files and put them into one folder
 
+Run main.py to start webpage
+
 Make sure you have PlatformIO downloaded for VSCode
 
 Modify the definitions in main.cpp to what you need
