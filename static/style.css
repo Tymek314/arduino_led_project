@@ -1,0 +1,65 @@
+
+/* General page styling */
+body {
+    background-color: #181818;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Main page container */
+.container {
+    max-width: 1000px;
+    margin: auto;
+}
+
+/* Main heading */
+h1 {
+    text-align: center;
+}
+
+/* Control panel */
+.controls {
+    background-color: #252525;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+/* Buttons */
+button {
+    background-color: #0078d4;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+button:hover {
+    background-color: #005a9e;
+}
+
+/* LED visualization */
+.led-display {
+    background-color: #101010;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+/* Status text */
+.status {
+    color: #aaaaaa;
+    margin-top: 10px;
+}
+
+#visualizer {
+    display: block;
+    width: 100%;
+    height: 400px;
+    background: #111;
+    border-radius: 8px;
+}

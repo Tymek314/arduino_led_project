@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>LED Audio Visualizer</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>LED Audio Visualizer</h1>
+
+        <div class="controls">
+            <button id="startconnection">Start Arduino Connection</button>
+            <button id="startled" style="display: none;">Start LED</button>
+            <button id="stopled" style="display: none;">Stop LED</button>
+            <button id="startvisualizer"> Start Visualizer</button>
+            <button id="stopvisualizer" style="display: none;"> Stop Visualizer</button>
+
+            <p id="status"> Idle </p>
+        </div>
+
+        <div class="controls">
+            <h2>Audio Settings</h2>
+            <label for="speaker-select">
+                Audio Output:
+            </label>
+
+            <select id="speaker-select">
+                <option value="">Select a speaker</option>
+            </select>
+        </div>
+
+        <div class="led-display">
+            <h2>LED Visualization</h2>
+            <canvas id="visualizer"></canvas>
+        </div>
+
+    </div>
+
+    <script src="/static/app.js"></script>
+
+</body>
+</html>
