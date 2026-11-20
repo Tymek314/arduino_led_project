@@ -1,5 +1,5 @@
 import uvicorn
-
+#run this to start
 
 if __name__ == "__main__":
     uvicorn.run(
