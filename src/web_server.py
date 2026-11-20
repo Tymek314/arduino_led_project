@@ -60,7 +60,7 @@ async def home(request: Request):
 
 @app.post("/startconnection")
 def start_conn():
-    # py_loader.start_connection()
+    py_loader.start_connection()
     return {"status": "connected"}
 
 
