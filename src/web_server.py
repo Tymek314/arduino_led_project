@@ -141,6 +141,7 @@ async def websocket_endpoint(websocket: WebSocket):
         data = {
             "left": audio.band_magnitudeL,
             "right": audio.band_magnitudeR,
+            "cur_selected": [audio.Lbass, audio.Rbass, audio.cur_max_L, audio.cur_max_R]
         }
         await websocket.send_json(data)
         await asyncio.sleep(0.02)
