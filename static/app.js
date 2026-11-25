@@ -10,6 +10,7 @@ const canvas = document.getElementById("visualizer")
 const ctx = canvas.getContext("2d")
 let leftBands = [];
 let rightBands = [];
+let curSelected = [];
 
 
 start_connection.addEventListener("click", async () => {
@@ -53,9 +54,10 @@ startVisualizerButton.addEventListener("click", async () => {
     };
     visualizerSocket.onmessage = (event) => {
         const data = JSON.parse(event.data);
-        // console.log("Received audio data:", data);
+        // console.log("Received audio data:", data.cur_selected);
         leftBands = data.left;
         rightBands = data.right;
+        curSelected = data.cur_selected;
     };
 
     visualizerSocket.onclose = () => {
@@ -113,7 +115,7 @@ function resizeCanvas() {
 }
 
 
-function drawBands(bands, x, y, width, height) {
+function drawBands(bands, x, y, width, height, bassSel, curMax) {
     const count = bands.length;
     if (count === 0) return;
     const gap = 4;
@@ -125,7 +127,15 @@ function drawBands(bands, x, y, width, height) {
         const barHeight = normalized * height;
         const barX = x + i * (barWidth + gap);
         const barY = y + height - barHeight;
-        ctx.fillStyle = "#00e676";
+        if (i == bassSel) {
+            ctx.fillStyle = "#e61b00";
+        }
+        else if (i == curMax){
+            ctx.fillStyle = "#00d7e6"
+        }
+        else {
+            ctx.fillStyle = "#2af06c";
+        }
         ctx.fillRect(
             barX,
             barY,
@@ -142,21 +152,9 @@ function drawVisualizer() {
     ctx.clearRect(0, 0, width, height);
     const halfHeight = height / 2;
     // Left channel - top half
-    drawBands(
-        leftBands,
-        10,
-        10,
-        width - 20,
-        halfHeight - 10
-    );
+    drawBands(leftBands, 10, 10, width - 20, halfHeight - 10, curSelected[0], curSelected[2] +6);
     // Right channel - bottom half
-    drawBands(
-        rightBands,
-        10,
-        halfHeight + 10,
-        width - 20,
-        halfHeight - 10
-    );
+    drawBands(rightBands, 10, halfHeight + 10, width - 20, halfHeight - 10, curSelected[1], curSelected[3] +6);
     requestAnimationFrame(drawVisualizer);
 }
 
