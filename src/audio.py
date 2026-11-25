@@ -17,7 +17,7 @@ sample_size: int = int(sample_rate * 0.02)
 band_magnitudeL = []
 band_magnitudeR = []
 cur_max_L: int = None
-cur_max_r: int = None
+cur_max_R: int = None
 Lbass: int = None
 Rbass: int = None
 
@@ -50,28 +50,31 @@ window = np.hanning(sample_size * 4)
 def add_block(band_magnitudeL, band_magnitudeR, band_colors):
     py_loader.list_L = []
     py_loader.list_R = []
-    cur_max_L = band_magnitudeL.index(max(band_magnitudeL))
+    cur_max_L: int = band_magnitudeL.index(max(band_magnitudeL))
     for i in range(0, int(max(band_magnitudeL) /sum(band_magnitudeL) *7)):
         py_loader.list_L.append(band_colors[cur_max_L])
-    cur_max_R = band_magnitudeR.index(max(band_magnitudeR))
+    cur_max_R: int = band_magnitudeR.index(max(band_magnitudeR))
     for i in range(0, int(max(band_magnitudeR) /sum(band_magnitudeR) *7)):
         py_loader.list_R.append(band_colors[cur_max_R])
     return cur_max_L, cur_max_R
 
 
 def do_bassss(band_magnitudeL, band_magnitudeR):
+    Lbass = int(np.argmax(band_magnitudeL[0:6]))
+    Rbass = int(np.argmax(band_magnitudeR[0:6]))
+
     if max(band_magnitudeL[0:4]) > 0 and sum(band_magnitudeL) > 0:
-        Lbass = max(band_magnitudeL[0:4])
-        py_loader.brightness_L = f"{int((Lbass/sum(band_magnitudeL)) *200) +1:03d}"
+        py_loader.brightness_L = f"{int((Lbass / sum(band_magnitudeL)) * 200) + 1:03d}"
+
     if max(band_magnitudeR[0:4]) > 0 and sum(band_magnitudeR) > 0:
-        Rbass = max(band_magnitudeR[0:4])
-        py_loader.brightness_R = f"{int((Rbass/sum(band_magnitudeR)) *200) +1:03d}"
+        py_loader.brightness_R = f"{int((Rbass / sum(band_magnitudeR)) * 200) + 1:03d}"
+
     return Lbass, Rbass
 
 
 def run_audio(stop_event):
     speaker = sc.get_speaker(web_server.selected_speaker)
-    global band_magnitudeL, band_magnitudeR
+    global band_magnitudeL, band_magnitudeR, cur_max_L, cur_max_R, Lbass, Rbass
     while not stop_event.is_set():
         with sc.get_microphone(id=str(speaker.name), include_loopback=True).recorder(samplerate=sample_rate) as recorder:
             audio = recorder.record(numframes=sample_size)
@@ -106,8 +109,8 @@ def run_audio(stop_event):
             )
 
         if max(band_magnitudeR) > 0 and max(band_magnitudeL) > 0:
-            cur_max_L, cur_max_R = do_bassss(band_magnitudeL, band_magnitudeR)
-            Lbass, Rbass = add_block(band_magnitudeL[4:], band_magnitudeR[4:], band_colors)
+            Lbass, Rbass = do_bassss(band_magnitudeL, band_magnitudeR)
+            cur_max_L, cur_max_R = add_block(band_magnitudeL[6:], band_magnitudeR[6:], band_colors)
             if web_server.audio_mode == 1 or web_server.audio_mode == 3:
                 py_loader.load_pixels()
     pass
