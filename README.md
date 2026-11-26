@@ -27,7 +27,7 @@ Bluetooth?
 This project used ChatGPT to teach me how to control LED's, send signals to an arduino, and how to pull audio data from windows.
 
 
-<img width="1094" height="1001" alt="image" src="https://github.com/user-attachments/assets/ea4e71d5-8585-412d-94a5-d4b063ef51d5" />
+<img width="1099" height="1004" alt="image" src="https://github.com/user-attachments/assets/b516d4db-da87-4c1f-a426-05cdd7c82cd5" />
 
 <img width="605" height="393" alt="image" src="https://github.com/user-attachments/assets/db7ecad7-7d2b-4339-aba3-75e189231ee1" />
 
