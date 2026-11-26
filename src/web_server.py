@@ -144,4 +144,4 @@ async def websocket_endpoint(websocket: WebSocket):
             "cur_selected": [audio.Lbass, audio.Rbass, audio.cur_max_L, audio.cur_max_R]
         }
         await websocket.send_json(data)
-        await asyncio.sleep(0.02)
+        await asyncio.sleep(0.02) #currently 50Hz, change this to change frame rate
